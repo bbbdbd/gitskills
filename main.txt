@@ -1,0 +1,55 @@
+def encrypt(password):
+    # 交换个位和十位
+    swapped = str(password % 10) + str((password // 10) % 10)
+    # 加上5，对10取余，乘以2
+    processed = ''.join(str((int(digit) + 5) % 10 * 2) for digit in swapped)
+    # 反转数字
+    encrypted = int(processed[::-1])
+    return encrypted
+
+def decrypt(encrypted):
+    # 反转数字
+    reversed_num = str(encrypted)[::-1]
+    # 分解每位数
+    digits = [int(digit) for digit in reversed_num]
+    # 除以2，对10取余，减去5
+    processed = ''.join(str((digit // 2 - 5) % 10) for digit in digits)
+    # 交换个位和十位
+    decrypted = int(processed[1] + processed[0])
+    return decrypted
+
+def menu():
+    while True:
+        print("\n=== 密码加密解密系统 ===")
+        print("1. 加密")
+        print("2. 解密")
+        print("3. 退出")
+        
+        choice = input("请选择操作 (1/2/3): ")
+        
+        if choice == "1":   # 加密
+            try:
+                password = int(input("请输入要加密的密码: "))
+                encrypted = encrypt(password)
+                print(f"加密后的密码为: {encrypted}")
+            except ValueError:
+                print("错误：输入的密码必须为整数")
+            
+        elif choice == "2":   # 解密
+            try:
+                encrypted = int(input("请输入要解密的密码: "))
+                decrypted = decrypt(encrypted)
+                print(f"解密后的密码为: {decrypted}")
+            except ValueError:
+                print("错误：输入的密码必须为整数")
+            
+        elif choice == "3":   # 退出
+            print("谢谢使用，再见！")
+            break
+        
+        else:
+            print("错误：无效的菜单选项，请重新输入")
+
+menu()
+#随意添加注释
+#随意添加注释
