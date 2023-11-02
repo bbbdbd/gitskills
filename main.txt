@@ -7,7 +7,7 @@ def encrypt(password):
     encrypted = int(processed[::-1])
     return encrypted
 
-def decrypt(encrypted):
+#def decrypt(encrypted):
     # 反转数字
     reversed_num = str(encrypted)[::-1]
     # 分解每位数
@@ -52,5 +52,4 @@ def menu():
 
 menu()
 #随意添加注释
-#随意添加注释
-#随意添加注释
+#添加功能添加注释
